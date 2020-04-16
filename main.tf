@@ -2,6 +2,7 @@ resource "kubernetes_service" "service" {
   metadata {
     name = var.app_name
     namespace = var.app_namespace
+    annotations = var.annotations
   }
   spec {
     selector = {

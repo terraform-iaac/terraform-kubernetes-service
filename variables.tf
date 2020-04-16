@@ -19,3 +19,7 @@ variable "load_balancer_ips_whitelist" {
   default = null
   description = "(Optional) !!!Only applies with type = LoadBalancer!!! Define IPs cidr range for whitelist in Load Balancer. By default accept all IPs."
 }
+variable "annotations" {
+  description = "(Optional) Add annotations"
+  default = {}
+}
