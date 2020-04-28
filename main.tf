@@ -3,11 +3,10 @@ resource "kubernetes_service" "service" {
     name = var.app_name
     namespace = var.app_namespace
     annotations = var.annotations
+    labels = local.labels
   }
   spec {
-    selector = {
-      app = var.app_name
-    }
+    selector = local.labels
     type = var.type
     load_balancer_ip = var.type == "LoadBalancer" ? var.load_balancer_ip : null
     load_balancer_source_ranges = var.type == "LoadBalancer" ? var.load_balancer_ips_whitelist : null
