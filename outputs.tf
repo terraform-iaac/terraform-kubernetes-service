@@ -15,3 +15,6 @@ output "id" {
 output "name" {
   value = kubernetes_service.service.metadata[0].name
 }
+output "namespace" {
+  value = kubernetes_service.service.metadata[0].namespace
+}

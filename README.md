@@ -1,7 +1,65 @@
-### Module for service
+Terraform module for Kubernetes Service
+==========================================
 
-### Provider versions:
-      kubernetes min "1.11.1"
-#### Set up service as ClusterIP or  NP or LB.
-#### Known bugs:
-* K8s provider can't switch from NP or LB to clusterIP, because provider don't delete Node Port field.
+## Usage (more in example direcotry)
+
+With default labels, selector finds pods with `app` label which equal to `app_name`
+
+### Example with ClusterIP
+```
+module "service_jenkins_ClusterIP" {
+  source = "../"
+  
+  app_name      = "jenkins1"
+  app_namespace = "jenkins1"
+  port_mapping  = var.port_mapping_CI
+}
+```
+
+### Example with Load Balancer
+```
+module "service_jenkins_LB" {
+  source = "../"
+  app_name         = "jenkins2"
+  app_namespace    = "jenkins2"
+  port_mapping     = var.port_mapping_LB
+  type             = "LoadBalancer"
+  
+  load_balancer_ip            = "134.13.13.24" // This field will be ignored if the cloud-provider does not support the feature
+  load_balancer_ips_whitelist = [
+    "10.10.10.0/24",
+    "34.23.145.91/32"
+  ]
+}
+```
+### Example with Node Port
+```
+module "service_jenkins_NP" {
+  source = "../"
+  
+  app_name      = "jenkins3"
+  app_namespace = "jenkins3"
+  port_mapping  = var.port_mapping_NP
+  type          = "NodePort"
+}
+```
+
+
+## Terraform Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12.26 |
+| kubernetes | >= 1.12.0 |
+
+## Inputs
+See in example directory & variables.tf
+
+## Outputs
+| Name | Description |
+|------|:-----------:|
+| name | Name of the service |
+| namespace | Namespace in which created the service |
+| id | Kubernetes resource id |
+| load_balancer_ingress_ip | IP is set for load-balancer ingress points that are IP based |
+| load_balancer_ingress_hostname | Hostname is set for load-balancer ingress points that are DNS based |
