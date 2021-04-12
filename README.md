@@ -50,7 +50,7 @@ module "service_jenkins_NP" {
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12.26 |
-| kubernetes | >= 1.12.0 |
+| kubernetes | >= 2.0.0 |
 
 ## Inputs
 See in example directory & variables.tf
@@ -61,5 +61,3 @@ See in example directory & variables.tf
 | name | Name of the service |
 | namespace | Namespace in which created the service |
 | id | Kubernetes resource id |
-| load_balancer_ingress_ip | IP is set for load-balancer ingress points that are IP based |
-| load_balancer_ingress_hostname | Hostname is set for load-balancer ingress points that are DNS based |
