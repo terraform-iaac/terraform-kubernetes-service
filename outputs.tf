@@ -10,3 +10,8 @@ output "name" {
 output "namespace" {
   value = kubernetes_service.service.metadata[0].namespace
 }
+
+# Ports
+output "node_ports" {
+  value = kubernetes_service.service.spec[0].port[*].node_port
+}

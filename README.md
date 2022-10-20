@@ -56,8 +56,9 @@ module "service_jenkins_NP" {
 See in example directory & variables.tf
 
 ## Outputs
-| Name | Description |
-|------|:-----------:|
-| name | Name of the service |
-| namespace | Namespace in which created the service |
-| id | Kubernetes resource id |
+| Name       |              Description               |
+|------------|:--------------------------------------:|
+| name       |          Name of the service           |
+| namespace  | Namespace in which created the service |
+| id         |         Kubernetes resource id         |
+| node_ports |   All Node Ports generated & entered   |
